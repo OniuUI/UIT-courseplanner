@@ -1,0 +1,92 @@
+{% extends 'base.twig' %}
+
+{% block title %} Nytt emne {% endblock %}
+
+{% block main %}
+    <div class="container-fluid box center-elements">
+        <h2>Opprett ny emnebeskrivelse</h2>
+
+        <form method="post" action="index.php">
+            <!-- Course code -->
+            <label for="course_code">Emnekode</label>
+            <input type="text" id="course_code" name="course_code" required>
+            <br>
+
+            <label for="course_name_nb_no">Emnenavn (norsk)</label>
+            <input type="text" id="course_name_nb_no" name="course_name_nb_no" required>
+            <br>
+
+            <label for="course_name_nn_no">Emnenavn (nynorsk)</label>
+            <input type="text" id="course_name_nn_no" name="course_name_nn_no">
+            <br>
+
+            <label for="course_name_en_gb">Emnenavn (engelsk)</label>
+            <input type="text" id="course_name_en_gb" name="course_name_en_gb">
+            <br>
+
+
+            <!-- Degree -->
+            <label for="degree">Grad</label>
+            <select id="degree">
+                <option name="placeholder" value="0">Placeholder</option>
+                {% for degree in degrees %}
+                    <option name="{{ degree.getDegree }}"
+                            value="{{ degree.getIdDegree }}">{{ degree.getDegree }}</option>
+                {% endfor %}
+            </select>
+            <br>
+
+            <!-- ECTS -->
+            <label for="ects">Studiepoeng</label>
+            <select id="ects">
+                <option name="placeholder" value="0">Placeholder</option>
+                {% for studyPoints in allStudyPoints %}
+                    <option name="{{ studyPoints.getStudyPoints }}"
+                            value="{{ studyPoints.getIdStudyPoints }}">{{ studyPoints.getStudyPoints }}</option>
+                {% endfor %}
+            </select>
+            <br>
+
+
+            <!-- Course leader -->
+            <label for="course_leader">Studieleder</label>
+            <select id="course_leader">
+                <option name="placeholder" value="0">Placeholder</option>
+                <!-- TODO: Logic behind displaying course leader's name needs reworking by backend -->
+                {% for course_leader in course_leaders %}
+                    <option name="{{ course_leader.getIdCourseLeader }}"
+                            value="{{ course_leader.getIdCourseLeader }}">{{ course_leader.getIdCourseLeader }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <br>
+
+
+            <!-- Prerequisites -->
+            <label for="prerequisites" class="h5">Forkunnskapskrav</label>
+            <br>
+
+            <select id="prerequisites" name="prerequisites">
+                <option name="prerequisite[]" value="0">ITE0000 - Placeholder</option>
+                {% for course_code in course_code %}
+                    <option name="prerequisite[]"
+                            value="{{ course_code.getIdCourseCode }}">{{ course_code.getCourseCode }} - {{ course_code.getNameNbNo }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="checkbox" id="prerequisites_required" name="prerequisites_required[]">
+            <label for="prerequisites_required">Obligatorisk</label>
+            <br>
+
+            <!-- TODO: JavaScript should add a new dropdown, checkbox and button to remove prerequisite -->
+            <button onclick="" class="btn-secondary">Nytt forkunnskapskrav</button>
+            <br>
+            <br>
+
+
+            <!-- Post form -->
+            <input class="btn btn-info Default-Bg-Color" type="submit" name="create_course"
+                   value="Opprett emne">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.twig' %}
+
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="./css/maincss.css">
+{% endblock %}
+{% block main %}
+
+    <div class="container">
+
+        <!-- Page title -->
+        <div class="page-title">
+            <h2>Velkommen {{ user.getFirstname() }}</h2>
+    </div>
+
+    <div class="card-deck d-flex justify-content-center"> <!-- Center element -->
+        <form id="changeToMineCourse" method="post" action="index.php"> <!-- This form er for å sende til ny side -->
+            <input type="hidden" name="">
+            <div onclick="document.getElementById('changeToMineCourse').submit();">
+                <div class="card">
+                    <div class="card-body" id="hoverEffect">
+                        <h4 class="card-title">Mine emnner</h4>
+                        <p class="card-text">Få oversikt over alle mine emner</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form id="changeToCreateCourseCode" method="post" action="index.php">
+            <input type="hidden" name="">
+            <div onclick="document.getElementById('changeToCreateCourseCode').submit();">
+                <div class="card">
+                    <div class="card-body" id="hoverEffect">
+                        <h4 class="card-title">Opprett en ny emne</h4>
+                        <p class="card-text">Lage en ny emne</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form id="changeToMail" method="post" action="index.php">
+            <input type="hidden" name="">
+            <div onclick="document.getElementById('changeToMail').submit();">
+                <div class="card">
+                    <div class="card-body" id="hoverEffect">
+                        <h4 class="card-title">Min Innboks</h4>
+                        <p class="card-text">Få oversikt over alle meldinge dine</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form id="changeToAllCourseCodes" method="post" action="index.php">
+            <input type="hidden" name="">
+            <div onclick="document.getElementById('changeToAllCourseCodes').submit();">
+                <div class="card">
+                    <div class="card-body" id="hoverEffect">
+                        <h4 class="card-title">Emne oversikt</h4>
+                        <p class="card-text">Få opp oversikt over alle emner</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    </div>
+{% endblock main %}

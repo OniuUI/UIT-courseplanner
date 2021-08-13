@@ -1,0 +1,251 @@
+{% extends 'base.twig' %}
+
+{% block title %} Ny emnebeskrivelse {% endblock %}
+
+{% block main %}
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="container-fluid">
+                <h2>Opprett ny emnebeskrivelse</h2>
+
+
+                <form method="post" action="post_data.php" class="text-left">
+
+                    <!-- Valid year for course overview -->
+                    <div class="form-group">
+                        <label class="h5" for="course_overview_year">Gjeldende år for emnebeskrivelsen</label>
+                        <input type="text" class="form-control" id="course_overview_year" name="course_overview_year"
+                               placeholder="2020" required>
+                    </div>
+
+
+                    <!-- Course name -->
+                    <div class="form-group">
+                        <label class="h5" for="course_name">Emnenavn</label>
+                        <input type="text" class="form-control" id="course_name" name="course_name"
+                               placeholder="ITE1807" required>
+                    </div>
+
+
+                    <!-- Single course? -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" id="single_course_checkbox"
+                               name="single_course">
+                        <label class="form-check-label" for="single_course_checkbox">Enkeltemne</label>
+                    </div>
+
+
+                    <!-- Continuation? -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" id="continuation_checkbox"
+                               name="continuation">
+                        <label class="form-check-label" for="continuation_checkbox">Kontinuering</label>
+                    </div>
+
+
+                    <!-- Semester -->
+                    <br>
+                    <h5>Termin</h5>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="spring" name="semester_spring"  value="1">
+                        <label class="form-check-label" for="spring">Vår</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="fall" name="semester_fall" value="1">
+                        <label class="form-check-label" for="fall">Høst</label>
+                    </div>
+
+
+                    <!-- Teaching language -->
+                    <br>
+                    <br>
+                    <label for="teaching_language" class="h5">Undervisningsspråk</label>
+                    <select class="custom-select" id="teaching_language">
+                        <option name="en_gb" value="1">Engelsk</option>
+                        <option name="no_nb" value="1">Norsk</option>
+                        <option name="no_nn" value="1">Nynorsk</option>
+                    </select>
+
+
+
+                    <!-- Exam type -->
+                    <br>
+                    <br>
+                    <label for="exam_type" class="h5">Eksamensform</label>
+                    <select class="custom-select" id="exam_type">
+                        <option name="written" value="1">Skriftlig</option>
+                        <option name="oral" value="1">Muntlig</option>
+                        <option name="report" value="1">Rapport</option>
+                    </select>
+
+
+                    <!-- Grade scale -->
+                    <br>
+                    <br>
+                    <label for="grade_scale" class="h5">Karakterskala</label>
+                    <select class="custom-select" id="grade_scale">
+                        <option name="a_f" value="1">A-F</option>
+                        <option name="approved" value="1">Bestått/ikke bestått</option>
+                    </select>
+
+
+
+                    <!-- Teaching place -->
+                    <br>
+                    <br>
+                    <h5 class="text-left">Undervisningssted</h5>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Tromsø</th>
+                            <th>Narvik</th>
+                            <th>Bodø</th>
+                            <th>Alta</th>
+                            <th>Mo i Rana</th>
+                            <th>Nettbasert</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td><input type="checkbox" id="tromso" name="tromso" value="1"></td>
+                            <td><input type="checkbox" id="narvik" name="narvik" value="1"></td>
+                            <td><input type="checkbox" id="bodo" name="bodo" value="1"></td>
+                            <td><input type="checkbox" id="alta" name="alta" value="1"></td>
+                            <td><input type="checkbox" id="mo_i_rana" name="mo_i_rana" value="1"></td>
+                            <td><input type="checkbox" id="online" name="online" value="1"></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                    <!-- Competence goals / What do you learn? -->
+                    <label for="competence_goals" class="h5">Hva lærer du?</label>
+                    <br>
+                    <textarea rows="5" cols="100" class="InputFields" id="competence_goals" name="competence_goals"
+                              placeholder="Kompetansemål..."
+                              required>
+                    Emnets læringsresultat skal være klart formulert, og beskrives punktvis under kategoriene kunnskaper og forståelse, ferdigheter og kompetanse. På små emner (10 stp) er kompetansebeskrivelsene ikke nødvendige. Læringsresultatmå formuleresslik at detkan etterprøves og det skalværetydelig sammenhengmellom emnets læringsresultat,undervisningsoppleggog eksamens-/vurderingsformer.Når språklig kompetanse er en del av læringsmålet, må dette tas inn i emnebeskrivelsene og studieplanene.
+
+                    Beskrivelsene skal følge følgende oppsett:
+
+                    Etter bestått emne skal studentene ha følgende læringsresultat:
+
+                    Kunnskaper og forståelse:
+                    -
+                    -
+                    Ferdigheter:
+                    -
+                    -
+                    Kompetanse:
+                    -
+                    -
+                </textarea>
+                    <br>
+                    <br>
+
+
+                    <!-- Academic content -->
+                    <label for="academic_content" class="h5">Faglig innhold</label>
+                    <br>
+                    <textarea rows="5" cols="100" class="InputFields" id="academic_content" name="academic_content"
+                              placeholder="Faglig innhold..."
+                              required>Beskrivelse av faglig innhold, maks 300 ord.</textarea>
+                    <br>
+                    <br>
+
+
+                    <!-- Learning methods -->
+                    <label for="learning_methods" class="h5">Læringsformer og aktiviteter</label>
+                    <br>
+                    <textarea rows="5" cols="100" class="InputFields" id="learning_methods" name="learning_methods"
+                              placeholder="Læringsformer og aktiviteter..."
+                              required>Undervisningsomfang, undervisnings-og arbeidsform, samt undervisningsfrekvens skal beskrives. I tilfeller der det ikke gis undervisning i emnet hvert semester, bør emnebeskrivelsen inneholde opplysninger om muligheten for å avlegge eksamen i undervisningsfrie semestre. Det skal være tydelig sammenheng mellom emnets forventede læringsutbytte og de undervisnings- og arbeidsformer som er valgt for emnet.</textarea>
+                    <br>
+                    <br>
+
+
+                    <!-- Work requirements -->
+                    <label for="work_requirements" class="h5">Arbeidskrav, eksamen og vurdering</label>
+                    <br>
+                    <textarea rows="5" cols="100" class="InputFields" id="work_requirements"
+                              name="work_requirements"
+                              placeholder="Arbeidskrav, eksamen og vurdering..."
+                              required>
+                    Arbeidskrav
+
+                    VIKTIG! Beskrivelsen skal inneholde følgende:
+                    1. En beskrivelse av eventuelle arbeidskrav, f.eks. "Et muntlig framlegg, et notat og deltakelse på undervisning", omfanget av disse og hvilke som er obligatoriske, f.eks. forelesninger, metodekurs, øvinger, praksis, feltkurs, ekskursjoner, laboratoriearbeid, gruppeoppgaver, semesteroppgaver og andre skriftlige oppgaver.
+
+                    NB! Det må være oppgitt eksakte tall på totalt antall, og hvor mange obligatoriske øvinger det er, altså hvor mange godkjente/ikke godkjente øvinger som vil bli levert til eksamenskontoret per student.
+
+                    Eksamen og vurdering
+                    Eksamensordning, prøve-og vurderingsform, herunder hvilke vurderinger som kommer på vitnemålet eller som inngår i beregningsgrunnlaget for en karakter som kommer på vitnemålet, skal angis.
+
+                    Vurderingsuttrykk skal angis (bokstavkarakter eller” bestått”/” ikke bestått”). Det skal være tydelig sammenheng mellom emnets forventede læringsutbytte og de eksamens-og vurderingsform(er) som er valgt for emnet.
+
+                    VIKTIG!
+                    Beskrivelsen skal være kort og inneholde følgende:
+                    1.Hvilke eksamensformer som benyttes, f.eks. «Skriftlig skoleeksamen, 5timer", «Rapport», «Muntlig» ...
+                    2.Hvilken karakterskala som benyttes, f.eks. "Det gis bokstavkarakterer fra
+
+
+                </textarea>
+                    <br>
+                    <br>
+
+
+                    <!-- <div id="hidden_offers_online_students" style="display: none;"> -->
+                    <!-- Add JavaScript to hide/show this menu depending on if online option is checked in "Teaching place" -->
+                    <div id="hidden_offers_online_students">
+                        <h3>Tilbud for nettstudenter</h3>
+
+
+                        <input type="checkbox" id="streaming" value="1">
+                        <label for="streaming">Strømming av forelesningene</label>
+                        <br>
+
+                        <input type="checkbox" id="web_meeting_lecture" value="1">
+                        <label for="web_meeting_lecture">Åpent nettmøte under forelesningene</label>
+                        <br>
+
+                        <input type="checkbox" id="web_meeting_evening" value="1">
+                        <label for="web_meeting_evening">Nettmøte med studentassistent på kveldstid</label>
+                        <br>
+
+                        <input type="checkbox" id="followup" value="1">
+                        <label for="followup">Oppfølging via telefon, epost og/eller Skype</label>
+                        <br>
+
+                        <input type="checkbox" id="organized_arrangements" value="1">
+                        <label for="organized_arrangements">Organisert opplegg i samlingsukene (lab, ekskursjon,
+                            felt,
+                            etc.)</label>
+                        <br>
+
+                        <label for="other" class="h5">Annet</label>
+                        <br>
+                        <textarea rows="5" cols="100" class="InputFields" id="other" name="other"
+                                  placeholder="Valgfritt"></textarea>
+                        <br>
+                    </div>
+
+                    <!-- Post form -->
+                    <input class="btn btn-info Default-Bg-Color" type="submit" name="create_course_overview"
+                           value="Create course overview">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="container">
+                <button id="bt_create" class="button" style="vertical-align:middle">
+                    <span>Opprett</span>
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends 'base.twig' %}
+
+{% block title %} Emnekode {% endblock %}
+
+{% block main %}
+
+    <!-- Heading -->
+    <div class="row">
+        <h1>ITE-1807</h1>
+    </div>
+
+    <div class="row">
+
+        <div class="col-8" id="single_course_code">
+
+            <form action="#" method="post">
+
+
+                <!-- Course names -->
+                <div class="form-group text-left">
+                    <label class="h5" for="course_code">Emnekode</label>
+                    <input class="InputFields" id="course_code" type="text"
+                           value="{{ course_code.getCourseCode }}ITE-1807" disabled>
+                </div>
+
+                <div class="text-left">
+                    <h2>Emnekodenavn</h2>
+                </div>
+
+                <div class="form-group text-left">
+                    <label class="h5" for="course_name_nb_no">Norsk</label>
+                    <input class="InputFields" id="course_name_nb_no" type="text"
+                           value="{{ course_code.getNameNbNo }}Systemutvikling"
+                           disabled>
+                </div>
+
+                <div class="form-group text-left">
+                    <label class="h5" for="course_name_nb_nn">Nynorsk</label>
+
+                    <input class="InputFields" id="course_name_nb_nn" type="text"
+                           value="{{ course_code.getNameNbNy }}Systemutvikling"
+                           disabled>
+                </div>
+
+                <div class="form-group text-left">
+                    <label class="h5" for="course_name_en_gb">Engelsk</label>
+
+                    <input class="InputFields" id="course_name_en_gb" type="text"
+                           value="{{ course_code.getNameEnGb }}Software Engineering"
+                           disabled></div>
+                <br><br>
+
+
+                <!-- Degree -->
+                <div class="form-group text-left">
+                    <label class="h5" for="degree">Grad</label>
+
+                    <select id="degree" class="form-control" disabled>
+                        <option name="placeholder" value="0">Placeholder</option>
+                        {% for degree in degrees %}
+                            <option name="{{ degree.getDegree }}"
+                                    value="{{ degree.getIdDegree }}">{{ degree.getDegree }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <br>
+
+
+                <!-- ECTS -->
+                <div class="form-group text-left">
+                    <label class="h5" for="ects">Studiepoeng</label>
+
+                    <select class="form-control" id="ects" disabled>
+                        <option name="placeholder" value="0">Placeholder</option>
+                        {% for study_points in all_study_points %}
+                            <option name="{{ study_points.getStudyPoints }}"
+                                    value="{{ study_points.getIdStudyPoints }}">{{ study_points.getStudyPoints }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br>
+
+
+                <!-- Course Leader -->
+                <div class="form-group text-left">
+                    <label class="h5" for="course_leader">Studieleder</label>
+
+
+                    <select class="form-control" id="course_leader" disabled>
+                        <option name="placeholder" value="0">Placeholder</option>
+                        <!-- TODO: Logic behind displaying course leader's name needs reworking by backend -->
+                        {% for course_leader in course_leaders %}
+                            <option name="{{ course_leader.getIdCourseLeader }}"
+                                    value="{{ course_leader.getIdCourseLeader }}">{{ course_leader.getIdCourseLeader }}</option>
+                        {% endfor %}
+                    </select></div>
+                <br> <br>
+
+
+                <!-- Prerequisites -->
+                <div class="form-group text-left">
+                    <label for="prerequisites" class="h2">Forkunnskapskrav</label>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="prerequisites_required"
+                               name="prerequisites_required" disabled>
+                        <label for="prerequisites_required">Obligatorisk</label>
+                    </div>
+
+                    <select class="form-control" id="prerequisites" name="prerequisites" disabled>
+                        <option name="prerequisite[]" value="0">ITE0000 - Placeholder</option>
+                        {% for course_code in course_codes %}
+                            <option name="prerequisite[]"
+                                    value="{{ course_code.getIdCourseCode }}">{{ course_code.getCourseCode }}
+                                - {{ course_code.getNameNbNo }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+
+
+                <div class="row">
+                    <button id="bt_new_prerequisite" onclick="" class="btn btn-info Default-Bg-Color" hidden>
+                        Nytt forkunnskapskrav
+                    </button>
+                </div>
+
+                <!-- TODO: JavaScript should add a new dropdown, checkbox and button to remove prerequisite -->
+
+
+                <!-- Course Descriptions -->
+                <div class="list-group">
+                    <h2 class="text-left">Emnebeskrivelser</h2>
+                    <ul>
+                        <li class="text-left"><a href="#">V2020</a></li>
+                        <!-- TODO: Add back-end for course_description DB query -->
+                        {% for course_description in course_descriptions %}
+                            <li class="text-left"><a href="#">{{ course_description.getDescriptionName }}</a></li><br>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+                <div class="row">
+                    <input type="submit" id="bt_save_changes" name="bt_save_changes"
+                           class="text-center btn btn-info Default-Bg-Color"
+                           value="Lagre endringer" hidden>
+                </div>
+
+            </form>
+
+            <!-- onClick JavaScript that toggles .disabled -->
+            <script>
+                function toggle_inputs() {
+                    let inputs = document.getElementById("single_course_code").getElementsByTagName('input');
+                    let selects = document.getElementById("single_course_code").getElementsByTagName('select');
+                    let btSaveChanges = document.getElementById("bt_save_changes");
+                    let btNewPrerequisite = document.getElementById("bt_new_prerequisite");
+
+
+                    <!-- Enable all fields -->
+                    if (inputs[0].disabled == true) {
+                        for (let i = 0; i < inputs.length; i++) {
+                            inputs[i].disabled = false;
+                            btSaveChanges.hidden = false;
+                            btNewPrerequisite.hidden = false;
+                        }
+
+                        for (let i = 0; i < selects.length; i++) {
+                            selects[i].disabled = false;
+                        }
+                        <!-- Disable all fields -->
+                    } else {
+                        for (let i = 0; i < inputs.length; i++) {
+                            inputs[i].disabled = true;
+                            btSaveChanges.hidden = true;
+                            btNewPrerequisite.hidden = true;
+                        }
+
+                        for (let i = 0; i < selects.length; i++) {
+                            selects[i].disabled = true;
+                        }
+                    }
+                }
+            </script>
+        </div>
+
+        <div class="col-4" style="padding: 20px">
+            <button class="button" style="vertical-align:middle">
+                <span>Eksporter</span>
+            </button>
+            <br>
+            <br>
+            <button class="button" style="vertical-align:middle" onclick="toggle_inputs()">
+                <span>Rediger</span>
+            </button>
+        </div>
+    </div>
+
+{% endblock %}

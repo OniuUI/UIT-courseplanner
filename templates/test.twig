@@ -1,0 +1,84 @@
+<!-- TODO: Delete File before release
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/maincss.css">
+</head>
+<body>
+
+
+
+    <div>
+        <form METHOD=POST>
+            <label>Course code:</label>
+            <input type="number" name="CourseCode" id="CourseCode" required>
+
+            <label>name_nb_no:</label>
+            <input type="text" name="name_nb_no" id="name_nb_no" required>
+
+            <label>name_nb_nn:</label>
+            <input type="text" name="name_nb_nn" id="name_nb_nn" required>
+
+            <label>name_en_gb:</label>
+            <input type="text" name="name_en_gb" id="name_en_gb" required>
+
+            <label>Degree_idDegree:</label>
+            <input type="number" name="Degree_idDegree" id="Degree_idDegree" required>
+
+            <label>StudyPoints_idStudyPoints:</label>
+            <input type="number" name="StudyPoints_idStudyPoints" id="StudyPoints_idStudyPoints" required>
+
+            <button type="submit" name = 'createCourse'>Send Inn</button>
+        </form>
+    </div>
+
+
+</body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opprettelse av nytt emne</title>
+</head>
+<body>
+<div>
+    <form METHOD=POST method="post" action="index.php">
+        <p>
+            <label>CourseCode:</label>
+            <input type="text" name="courseCode" id="courseCode" required>
+        </p>
+
+        <p>
+            <label>name_nb_no:</label>
+            <input type="text" name="name_nb_no" id="name_nb_no" required>
+        </p>
+
+        <p>
+            <label>name_nb_nn:</label>
+            <input type="text" name="name_nb_nn" id="name_nb_nn" required>
+        </p>
+
+        <p>
+            <label>name_en_gb:</label>
+            <input type="text" name="name_en_gb" id="name_en_gb" required>
+        </p>
+
+        <p>
+            <label>Degree_idDegree:</label>
+            <input type="number" name="Degree_idDegree" id="Degree_idDegree" required>
+        </p>
+
+        <p>
+            <label>StudyPoints_idStudyPoints:</label>
+            <input type="number" name="StudyPoints_idStudyPoints" id="StudyPoints_idStudyPoints" required>
+        </p>
+
+        <button type="submit" name = 'createCourse'>Send Inn</button>
+    </form>
+</div>
+</body>
+</html>
